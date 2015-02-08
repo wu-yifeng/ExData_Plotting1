@@ -1,0 +1,8 @@
+num<-read.table("household_power_consumption.txt",sep=";", skip=66637, nrows=2880, colClasses = c('character', 'character', 'numeric','numeric', 'numeric', 'numeric','numeric', 'numeric', 'numeric'),na.strings='?')
+num$time <- strptime(paste(num$V1, num$V2),"%d/%m/%Y %H:%M:%S")
+png(file="plot3.png")
+plot(num$time, num$V7, xlab=" ", ylab="Global Active Power(kilowatt)", type="l",lty=1)
+lines(num$time, num$V8, col="red")
+lines(num$time, num$V9, col="blue")
+legend("topright",legend=c("sub_metering_1","sub_metering_2","sub_metering_3"),col=c("black","red","blue"))
+dev.off()
